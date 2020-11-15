@@ -119,17 +119,6 @@
    `(powerline-inactive1 ((t (:background ,background :foreground ,text))))
    `(powerline-inactive2 ((t (:background ,background :foreground ,text))))
 
-   ;; ;; js2-mode
-   ;; `(js2-function-call ((t (:inherit (font-lock-function-name-face)))))
-   ;; `(js2-function-param ((t (:foreground ,text))))
-   ;; `(js2-jsdoc-tag ((t (:foreground ,keywords))))
-   ;; `(js2-jsdoc-type ((t (:foreground ,constants))))
-   ;; `(js2-jsdoc-value((t (:foreground ,text))))
-   ;; `(js2-object-property ((t (:foreground ,text))))
-   ;; `(js2-external-variable ((t (:foreground ,constants))))
-   ;; `(js2-error ((t (:foreground ,error))))
-   ;; `(js2-warning ((t (:foreground ,warning))))
-
    ;; highlight numbers
    `(highlight-numbers-number ((t (:foreground ,numbers))))
   )
@@ -157,7 +146,6 @@
 
 ;;JAVASCRIPT configuration
 (setq js-indent-level 2)
-
 
 ;;C Programming Language
 (setq c-default-style "linux"
@@ -194,47 +182,34 @@
 ;;(package-install 'use-package)
 (require 'use-package)
 
-;;whitespace remover - not currently hooks to modes
-(require 'ws-butler)
-
-
-;;JAVASCRIPT
-;;js2-mode configuration
-(require 'js2-mode)
-(use-package js2-mode
-  :mode ("\\.js?\\'" . javascript-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(setq js2-basic-offset 2)
-
-;;npm-mode configuration
-(use-package npm-mode
-  :ensure t
-  :mode "\\.jsx?\\'")
-	     
-;;RJSX package
-(use-package rjsx-mode
-  :ensure t
-  :mode "\\.jsx?\\'") ;;consider altering or removing the last line
-
-;;Tide Package
-(defun setup-tide-mode()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (tide-hl-identifier-mode +1))
-
-(use-package tide
-  :ensure t
-  :after (rjsx-mode flycheck)
-  :hook (rjsx-mode . setup-tide-mode))
-
 ;;**************************************************
-
+;;Rainbow delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;General setting up
+(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-general.el")
+
+;;Volatile Highlighting
+;;(setq volatile-highlights-mode non-nil)
+;;(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-editing.el")
+
+;;Tagging
+;;Helm configuration
+(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm-gtags.el")
+(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm.el")
+
+;;ggtags
+;;(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-ggtags.el")
 
 ;;Auto-completion
 (add-hook 'prog-mode-hook #'company-mode)
+
+;;Syntax checking
+(use-package flycheck :ensure t :init)
+
+;;C++
+(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-c.el")
+(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-cedet.el")
 
 ;;PYTHON
 (require 'flymake-python-pyflakes)
@@ -242,13 +217,10 @@
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 
 (setq flymake-python-pyflakes-executable "flake8")
-;;Below line is for ignoring certain flags with the linter
+;;Below line is for ignoring certain flags with the linter if required
 ;;(setq flymake-python-pyflakes-extra-arguments '("--ignore=W806"))
 
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable))
+(use-package elpy :ensure t :init (elpy-enable))
 
 ;; Enable Flycheck for syntax checking
 (when (require 'flycheck nil t)
@@ -262,8 +234,3 @@
 
 (package-refresh-contents)
 (package-install-selected-packages)
-
-;;*********************************************************************************************
-(desktop-save-mode 1)
-(desktop-load-default)
-(desktop-read)
