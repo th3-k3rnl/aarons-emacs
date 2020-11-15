@@ -199,6 +199,7 @@
 (load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm.el")
 
 ;;ggtags
+(setq ggtags-executable-directory "/usr/bin/gtags")
 ;;(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-ggtags.el")
 
 ;;Auto-completion
