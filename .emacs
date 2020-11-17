@@ -186,6 +186,10 @@
 ;;Rainbow delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+;;Nyan-Cat Progress Bar
+(use-package nyan-mode
+  :init (nyan-mode 1))
+
 ;;General setting up
 (load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-general.el")
 
@@ -200,7 +204,7 @@
 
 ;;ggtags
 (setq ggtags-executable-directory "/usr/bin/gtags")
-;;(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-ggtags.el")
+(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-ggtags.el")
 
 ;;Auto-completion
 (add-hook 'prog-mode-hook #'company-mode)
