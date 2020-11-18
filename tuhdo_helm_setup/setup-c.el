@@ -1,5 +1,5 @@
 ;; company-c-headers
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/company-c-headers.el")
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/company-c-headers.el")
 
 (use-package company-c-headers
   :init
