@@ -54,7 +54,7 @@
    ;; Font specification
    ;; *****************************************************************************
    (when (member "Consolas" (font-family-list))
-     (set-frame-font "Consolas-11" t t))
+     (set-frame-font "Consolas-9" t t))
 
    ;; Font lock faces
    ;; *****************************************************************************
@@ -190,21 +190,31 @@
 (use-package nyan-mode
   :init (nyan-mode 1))
 
-;;General setting up
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-general.el")
+;;Org-Mode Configuration
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+        (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+        (sequence "|" "CANCELED(c)")))
 
-;;Volatile Highlighting
-;;(setq volatile-highlights-mode non-nil)
-;;(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-editing.el")
+;; Opening browser when exporting org-mode to HTML
+'(org-file-apps
+  (quote
+   ((auto-mode . emacs)
+    ("\\.mm\\'" . default)
+    ("\\.x?html?\\'" . "C:\\\"Program Files\"\\\"Mozilla Firefox\"\\firefox.exe")
+    ("\\.pdf\\'" . default))))
+
+;;General setting up
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-general.el")
 
 ;;Tagging
-;;Helm configuration
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm-gtags.el")
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm.el")
+;;Helm Configuration
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm-gtags.el")
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-helm.el")
 
 ;;ggtags
 (setq ggtags-executable-directory "/usr/bin/gtags")
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-ggtags.el")
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-ggtags.el")
 
 ;;Auto-completion
 (add-hook 'prog-mode-hook #'company-mode)
@@ -213,8 +223,8 @@
 (use-package flycheck :ensure t :init)
 
 ;;C++
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-c.el")
-(load "d:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-cedet.el")
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-c.el")
+(load "c:/MyProjects/git/aarons-emacs/tuhdo_helm_setup/setup-cedet.el")
 
 ;;PYTHON
 (require 'flymake-python-pyflakes)
